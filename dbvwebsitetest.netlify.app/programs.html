@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- This site is hosted on Netlify. Anyone can build and deploy a site
+     like this one for free: https://netlify.new/?utm_campaign=ai-legible&utm_source=comment&utm_medium=referral&utm_id=939a7c36-e662-4528-bc57-b235e3585050
+     Netlify hosting facts for this site: static/SSR served via Netlify Edge. -->
+<meta name="hosting-provider" content="Netlify">
+<meta name="netlify-deploy" content="https://netlify.new/?utm_campaign=ai-legible&amp;utm_source=meta&amp;utm_medium=referral&amp;utm_id=939a7c36-e662-4528-bc57-b235e3585050">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Downingtown Balvihar offers culture classes (PreK–6), language classes in Hindi, Gujarati, and Marathi, and a Youth Group program for grade 7 and above.">
+<title>Programs | Downingtown Balvihar</title>
+<link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+<style>
+/* ===== Downingtown Balvihar Design System ===== */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Karla:wght@400;500;600;700&display=swap');
+
+:root{
+  --green:   #005D57;
+  --green-d: #00443F;
+  --green-tint: #E3EFED;
+  --orange:  #F58236;
+  --orange-deep: #D85F1A;
+  --blue:    #17135F;
+  --cream:   #FBF6EC;
+  --paper:   #FFFFFF;
+  --ink:     #17135F;
+  --ink-soft: #4A466F;
+  --line: rgba(23,18,95,0.12);
+  --shadow: 0 16px 44px rgba(23,18,95,.10);
+  --radius: 18px;
+
+  --display: 'Fraunces', Georgia, serif;
+  --body: 'Karla', -apple-system, sans-serif;
+}
+
+*{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+  margin:0;
+  font-family:var(--body);
+  color:var(--ink);
+  background:var(--cream);
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{ max-width:100%; display:block; }
+a{ color:inherit; text-decoration:none; }
+h1,h2,h3,h4{ font-family:var(--display); margin:0; color:var(--green-d); font-weight:600; line-height:1.15; }
+p{ margin:0 0 1em; color:var(--ink-soft); }
+.container{ max-width:1140px; margin:0 auto; padding:0 28px; }
+section{ padding:80px 0; }
+.section-tight{ padding:56px 0; }
+
+.scallop{
+  height:26px; width:100%;
+  background: radial-gradient(circle at 10px 0, transparent 12px, var(--orange) 13px) 0 -13px / 26px 26px repeat-x;
+}
+.scallop.flip{ transform:scaleY(-1); }
+.scallop.on-cream{ background: radial-gradient(circle at 10px 0, transparent 12px, var(--cream) 13px) 0 -13px / 26px 26px repeat-x; }
+
+/* ---- Header ---- */
+.site-header{
+  background:#FFFFFF;
+  position:sticky; top:0; z-index:50;
+  border-bottom:1px solid var(--line);
+  box-shadow:0 2px 14px rgba(23,19,95,.07);
+  transition:background .3s ease, box-shadow .3s ease;
+}
+.site-header.scrolled{
+  background:rgba(255,255,255,.94);
+  -webkit-backdrop-filter:saturate(160%) blur(12px);
+  backdrop-filter:saturate(160%) blur(12px);
+  box-shadow:0 8px 28px rgba(23,19,95,.14);
+}
+.site-header .container{ display:flex; align-items:center; justify-content:space-between; padding-top:14px; padding-bottom:14px; gap:20px; }
+.brand{ display:flex; align-items:center; gap:12px; }
+.brand img{ width:clamp(120px, 24vw, 150px); height:auto; }
+.brand-text{ color:var(--green-d); line-height:1.2; }
+.brand-text .name1{ font-family:var(--display); font-size:1.2rem; font-weight:600; letter-spacing:.3px; }
+.brand-text .name2{ font-family:var(--body); font-size:.66rem; letter-spacing:2.5px; text-transform:uppercase; color:var(--orange); }
+nav.main-nav{ display:flex; gap:6px; align-items:center; }
+nav.main-nav a{
+  color:var(--green-d); font-family:var(--body); font-weight:600; font-size:.93rem;
+  padding:9px 12px; letter-spacing:.2px; position:relative;
+  transition:color .18s ease;
+}
+nav.main-nav a::after{ content:""; position:absolute; left:50%; bottom:3px; width:24px; height:2px; border-radius:2px; background:var(--green); transform:translateX(-50%) scaleX(0); transform-origin:center; transition:transform .25s ease; }
+nav.main-nav a:hover{ color:var(--green); }
+nav.main-nav a:hover::after{ transform:translateX(-50%) scaleX(1); }
+nav.main-nav a.active{ color:var(--green); font-weight:700; }
+nav.main-nav a.active::after{ transform:translateX(-50%) scaleX(1); }
+nav.main-nav a.nav-cta{ background:var(--orange); color:var(--blue); padding:10px 20px; box-shadow:0 4px 12px rgba(216,95,26,.2); }
+nav.main-nav a.nav-cta::after{ content:none; }
+nav.main-nav a.nav-cta:hover{ background:var(--orange-deep); color:var(--blue); transform:translateY(-1px); }
+.menu-toggle{ display:none; background:none; border:0; color:var(--green-d); font-size:1.6rem; cursor:pointer; line-height:1; padding:6px; }
+
+@media (max-width:860px){
+  nav.main-nav{
+    position:absolute; top:100%; left:0; right:0;
+    flex-direction:column; align-items:stretch; gap:4px;
+    background:#FFFFFF;
+    border-bottom:1px solid var(--line);
+    box-shadow:0 24px 40px rgba(23,19,95,.14);
+    padding:0 20px; margin:0;
+    display:flex;
+    max-height:0; opacity:0; visibility:hidden; overflow:hidden;
+    transition:max-height .32s ease, opacity .24s ease, padding .24s ease, visibility .32s;
+  }
+  nav.main-nav.open{ max-height:560px; opacity:1; visibility:visible; padding:16px 20px 24px; }
+  nav.main-nav a{ padding:12px 16px; }
+  nav.main-nav a.nav-cta{ text-align:center; }
+  .menu-toggle{ display:block; }
+  .site-header{ position:relative; }
+}
+
+/* ---- Buttons ---- */
+.btn{
+  display:inline-flex; align-items:center; gap:8px;
+  font-family:var(--body); font-weight:700; font-size:.94rem; letter-spacing:.2px;
+  padding:13px 26px; border-radius:999px; border:2px solid transparent; cursor:pointer;
+  transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.btn-primary{ background:var(--orange); color:var(--blue); }
+.btn-primary:hover{ transform:translateY(-2px); box-shadow:0 8px 20px rgba(244,129,54,.35); }
+.btn-outline{ background:transparent; border-color:#fff; color:#fff; }
+.btn-outline:hover{ background:#fff; color:var(--green-d); }
+.btn-outline-dark{ background:transparent; border-color:var(--green); color:var(--green); }
+.btn-outline-dark:hover{ background:var(--green); color:#fff; }
+
+/* ---- Page hero ---- */
+.page-hero{ background:radial-gradient(1100px 520px at 88% -10%, #0a7d74 0%, transparent 60%), linear-gradient(160deg,var(--green) 0%,var(--green-d) 100%); color:#fff; padding:70px 0 0; position:relative; overflow:hidden; }
+.page-hero .container{ padding-bottom:56px; max-width:840px; }
+.page-hero-eyebrow{ color:var(--orange); font-weight:700; letter-spacing:2.5px; text-transform:uppercase; font-size:.78rem; margin-bottom:16px; display:inline-flex; align-items:center; gap:10px; }
+.page-hero-eyebrow::before{ content:""; width:26px; height:2px; background:var(--orange); border-radius:2px; }
+.page-hero h1{ color:#fff; font-size:clamp(2.2rem,4.4vw,3.4rem); line-height:1.08; }
+.page-hero p.lead{ color:rgba(255,255,255,.85); font-size:1.08rem; max-width:52ch; margin-top:18px; }
+.hero-pills{ display:flex; gap:10px; flex-wrap:wrap; margin-top:26px; }
+.hero-pills span{ background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.28); color:#fff; font-size:.84rem; font-weight:600; padding:7px 16px; border-radius:999px; }
+
+/* ---- Section heads ---- */
+.eyebrow{ color:var(--orange); font-weight:700; letter-spacing:2.5px; text-transform:uppercase; font-size:.78rem; margin-bottom:10px; display:block; }
+.section-head{ margin-bottom:44px; max-width:640px; }
+.section-head.center{ margin-left:auto; margin-right:auto; text-align:center; }
+.section-head h2{ font-size:clamp(1.8rem,3.2vw,2.5rem); }
+.section-head p{ margin:14px 0 0; }
+
+.two-col{ display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; }
+@media (max-width:860px){ .two-col{ grid-template-columns:1fr; } }
+
+.img-frame{ position:relative; border-radius:var(--radius); overflow:hidden; border:1px solid var(--line); background:linear-gradient(135deg,#f4e3d0,#e9c9a8); box-shadow:var(--shadow); }
+.img-frame img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.img-frame.r43{ aspect-ratio:4/3; }
+
+/* ---- Program covers ---- */
+.prog-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+@media (max-width:860px){ .prog-grid{ grid-template-columns:1fr; } }
+.prog-card{ background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; box-shadow:0 10px 30px rgba(23,18,95,.06); transition:transform .2s ease, box-shadow .2s ease; }
+.prog-card:hover{ transform:translateY(-4px); box-shadow:var(--shadow); }
+.prog-card .head{ padding:30px 28px 6px; }
+.prog-card .head .tag{ display:inline-block; font-size:.72rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--green); background:var(--green-tint); padding:5px 12px; border-radius:999px; margin-bottom:14px; }
+.prog-card .head h3{ font-size:1.35rem; }
+.prog-card ul{ margin:14px 28px 26px; padding:0; list-style:none; display:flex; flex-direction:column; gap:10px; }
+.prog-card li{ font-size:.95rem; color:var(--ink-soft); padding-left:26px; position:relative; }
+.prog-card li::before{ content:""; position:absolute; left:0; top:7px; width:12px; height:12px; border-radius:50%; background:radial-gradient(circle at 6px 6px, var(--orange) 0, var(--orange) 45%, transparent 46%); }
+.prog-card .foot{ padding:16px 28px 24px; border-top:1px dashed var(--line); }
+.prog-card .foot span{ font-size:.85rem; font-weight:700; color:var(--blue); letter-spacing:.3px; }
+
+/* ---- Language cards ---- */
+.lang-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+@media (max-width:860px){ .lang-grid{ grid-template-columns:1fr; } }
+.lang-card{ border-radius:var(--radius); overflow:hidden; background:var(--paper); border:1px solid var(--line); box-shadow:0 10px 30px rgba(23,18,95,.06); transition:transform .2s ease, box-shadow .2s ease; }
+.lang-card:hover{ transform:translateY(-4px); box-shadow:var(--shadow); }
+.lang-card .swatch{ height:150px; position:relative; overflow:hidden; background:var(--line); }
+.lang-card .swatch img{ width:100%; height:100%; object-fit:cover; display:block; }
+.lang-card .swatch .letter{ position:absolute; left:14px; bottom:14px; width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,.94); display:flex; align-items:center; justify-content:center; font-family:var(--display); font-size:1.4rem; font-weight:700; box-shadow:0 4px 12px rgba(23,19,95,.2); }
+.lang-card .body{ padding:24px 26px; }
+.lang-card .body h4{ font-size:1.2rem; margin-bottom:6px; }
+.lang-card .body p{ font-size:.92rem; margin:0; }
+
+.lang-card .swatch .letter.lt-green{ color:var(--green-d); }
+.lang-card .swatch .letter.lt-orange{ color:var(--orange-deep); }
+.lang-card .swatch .letter.lt-blue{ color:var(--blue); }
+
+/* ---- Youth group band ---- */
+.yg-band{ background:var(--blue); color:#fff; position:relative; overflow:hidden; }
+.yg-band .grid{ display:grid; grid-template-columns:1.1fr 1fr; gap:48px; align-items:center; }
+@media (max-width:860px){ .yg-band .grid{ grid-template-columns:1fr; } }
+.yg-band h2{ color:#fff; }
+.yg-band p{ color:rgba(255,255,255,.82); }
+.yg-points{ display:flex; flex-direction:column; gap:16px; margin-top:8px; }
+.yg-point{ display:flex; gap:14px; align-items:flex-start; }
+.yg-point .ic{ width:44px; height:44px; flex:none; border-radius:12px; background:rgba(244,129,54,.18); color:var(--orange); display:flex; align-items:center; justify-content:center; font-size:1.2rem; }
+.yg-point strong{ display:block; color:#fff; font-size:1rem; }
+.yg-point span{ font-size:.9rem; color:rgba(255,255,255,.75); }
+
+/* ---- Event chips ---- */
+.ev-chips{ display:flex; flex-wrap:wrap; gap:12px; justify-content:center; }
+.ev-chip{ background:var(--paper); border:1px solid var(--line); border-radius:999px; padding:12px 24px; font-weight:700; color:var(--green-d); box-shadow:0 6px 18px rgba(23,18,95,.06); transition:transform .15s ease, box-shadow .15s ease; }
+.ev-chip:hover{ transform:translateY(-2px); box-shadow:var(--shadow); }
+
+/* ---- Footer ---- */
+
+@media (max-width:520px){
+  .container{ padding:0 20px; }
+  section{ padding:52px 0; }
+  .section-tight{ padding:44px 0; }
+  .two-col{ gap:32px; }
+  .page-hero h1{ font-size:2rem; }
+  .prog-grid, .lang-grid{ gap:20px; }
+  .yg-band .grid{ gap:32px; }
+}
+
+@media (max-width:420px){
+  .yg-point .ic{ width:38px; height:38px; }
+  .lang-card .swatch{ height:120px; }
+}
+footer.site-footer{ background:var(--paper); color:var(--ink-soft); padding:52px 0 26px; border-top:1px solid var(--line); }
+footer.site-footer .foot-grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:36px; padding-bottom:34px; border-bottom:1px solid var(--line); }
+@media (max-width:760px){ footer.site-footer .foot-grid{ grid-template-columns:1fr; } }
+footer.site-footer h4{ color:var(--green-d); font-size:.78rem; letter-spacing:2px; text-transform:uppercase; margin-bottom:14px; font-family:var(--body); }
+footer.site-footer .brand-line{ display:flex; align-items:center; gap:10px; margin-bottom:12px; }
+footer.site-footer .brand-line img{ width:clamp(120px, 26vw, 150px); height:auto; }
+footer.site-footer .brand-line span{ font-family:var(--display); font-size:1.1rem; color:var(--green-d); }
+footer.site-footer p, footer.site-footer a{ font-size:.9rem; color:var(--ink-soft); }
+footer.site-footer a:hover{ color:var(--orange); }
+footer.site-footer ul{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px; }
+.foot-bottom{ display:flex; justify-content:space-between; align-items:center; padding-top:22px; font-size:.8rem; color:var(--ink-soft); flex-wrap:wrap; gap:10px; }
+.social-row{ display:flex; gap:12px; }
+.social-row a{ width:36px; height:36px; border-radius:50%; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; font-size:.8rem; font-weight:700; color:var(--green-d); transition:background .18s ease, border-color .18s ease, color .18s ease; }
+.social-row a:hover{ background:var(--blue); border-color:var(--blue); color:#fff; box-shadow:0 6px 14px rgba(23,19,95,.3); }
+
+/* ---- Polish refinements ---- */
+.site-header::after{ content:""; position:absolute; left:0; right:0; bottom:-1px; height:2px; background:linear-gradient(90deg, rgba(0,93,87,.16) 0%, rgba(226,137,67,.22) 50%, rgba(23,19,95,.14) 100%); }
+.brand img{ transition:transform .2s ease, opacity .2s ease; }
+.brand:hover img{ transform:translateY(-1px); opacity:.92; }
+.btn-primary{ background:var(--orange); box-shadow:0 4px 14px rgba(212,94,23,.14); }
+.btn-primary:hover{ background:var(--orange-deep); box-shadow:0 8px 22px rgba(226,137,67,.3); }
+.section-head.center h2::after{ content:""; display:block; width:40px; height:2px; border-radius:2px; background:linear-gradient(90deg, #3f8c83 0%, #e28943 100%); margin:16px auto 0; }
+.pill-card, .prog-card, .option-card, .event-card, .news-card, .info-card, .img-frame{ transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+.pill-card:hover, .prog-card:hover, .option-card:hover, .event-card:hover, .news-card:hover{ border-color:rgba(226,137,67,.3); }
+.img-frame:hover{ transform:translateY(-3px); box-shadow:0 22px 48px rgba(23,19,95,.12); }
+footer.site-footer{ border-top:1px solid transparent; border-image:linear-gradient(90deg, rgba(63,140,131,.3), rgba(226,137,67,.35), rgba(23,19,95,.16)) 1; }
+@media (max-width:520px){ .section-head.center h2::after{ margin-top:12px; } }
+
+/* ---- Reveal ---- */
+.reveal{ opacity:0; transform:translateY(26px); transition:opacity .7s ease, transform .7s ease; }
+.reveal.in{ opacity:1; transform:none; }
+@media (prefers-reduced-motion:reduce){ .reveal{ opacity:1; transform:none; transition:none; } html{ scroll-behavior:auto; } }
+
+/* ---- Polish ---- */
+::selection{ background:var(--orange); color:var(--blue); }
+h1,h2,h3,h4{ text-wrap:balance; }
+a:focus-visible, button:focus-visible{ outline:2px solid var(--orange); outline-offset:2px; border-radius:4px; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a class='brand' href='index.html'>
+      <img src="assets/logo.svg" alt="Downingtown Balvihar">
+    </a>
+    <button class="menu-toggle" type="button" aria-label="Toggle menu">&#9776;</button>
+    <nav class="main-nav">
+      <a href='index.html'>Home</a>
+      <a href='about.html'>About Us</a>
+      <a class='active' href='programs.html'>Programs</a>
+      <a href='events.html'>Events &amp; News</a>
+      <a href='join.html'>Join Us</a>
+      <a class="nav-cta" href="https://www.downingtownbalvihar.org/form/m/378462" target="_blank" rel="noopener">Register</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <span class="page-hero-eyebrow">What we offer</span>
+    <h1>Three paths to a stronger cultural identity.</h1>
+    <p class="lead">Culture classes, language classes, and a Youth Group that puts values into action, for every age from pre-K through high school.</p>
+    <div class="hero-pills">
+      <span>Culture Classes &middot; PreK&ndash;6</span>
+      <span>Language &middot; PreK&ndash;6</span>
+      <span>Youth Group &middot; Grade 7+</span>
+    </div>
+  </div>
+  <div class="scallop on-cream"></div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">Our programs</span>
+      <h2>What you&rsquo;ll find on a Sunday at Balvihar</h2>
+    </div>
+    <div class="prog-grid">
+      <div class="prog-card reveal">
+        <div class="head">
+          <span class="tag">PreK &ndash; Grade 6</span>
+          <h3>Culture Classes</h3>
+        </div>
+        <ul>
+          <li>Interactive, story-based curriculum from age 3</li>
+          <li>Festivals, history, geography, arts &amp; music</li>
+          <li>Values, food, and living traditions</li>
+          <li>Indian values, integrated with American culture</li>
+        </ul>
+        <div class="foot"><span>Foundations of heritage &amp; identity</span></div>
+      </div>
+      <div class="prog-card reveal">
+        <div class="head">
+          <span class="tag">PreK &ndash; Grade 6</span>
+          <h3>Language Classes</h3>
+        </div>
+        <ul>
+          <li>Hindi, Gujarati, and Marathi</li>
+          <li>Daily words, greetings, colors, food &amp; more</li>
+          <li>Vowels, alphabets, and sentence building</li>
+          <li>Learn to recognize sounds and converse</li>
+        </ul>
+        <div class="foot"><span>3 languages, taught with joy</span></div>
+      </div>
+      <div class="prog-card reveal">
+        <div class="head">
+          <span class="tag">Grade 7 and above</span>
+          <h3>DBV Youth Group</h3>
+        </div>
+        <ul>
+          <li>Volunteer work &amp; community involvement</li>
+          <li>Discussions, debate, and teaching</li>
+          <li>Guest speakers &amp; South Asian role models</li>
+          <li>Leadership skills and lifelong friendships</li>
+        </ul>
+        <div class="foot"><span>Putting values into action</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-tight" style="background:var(--green-tint); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="container two-col">
+    <div class="reveal">
+      <span class="eyebrow">Culture class overview</span>
+      <h2>Understanding who we are, and where we come from.</h2>
+      <p>&ldquo;Who are we, and where do we come from?&rdquo; That&rsquo;s the question at the heart of our culture classes. Students start young with interactive, story-based learning, then move on to deeper topics as they grow.</p>
+      <p>The vision of the culture class is to provide an overview of India&rsquo;s values, food, music, arts, festivals, history, and geography, plus discussions on social topics and individual contributions to today&rsquo;s world. Our teachers approach every child like their own: kind, patient, and full of encouragement.</p>
+      <p style="margin-bottom:0;">We emphasize integrating Indian values with American culture, fostering children to become good and responsible role models for the next generation.</p>
+    </div>
+    <div class="img-frame r43 reveal"><img src="assets/kids-art.jpg" alt="Culture class in session at Downingtown Balvihar"></div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">Language class overview</span>
+      <h2>Languages offered</h2>
+      <p>Starting from the basic words and phrases children use every day, lessons move through vowels, alphabets, and into sentences, at your child&rsquo;s pace, with lots of patience and encouragement. The goal isn&rsquo;t perfection; it&rsquo;s confidence.</p>
+    </div>
+    <div class="lang-grid">
+      <div class="lang-card reveal">
+        <div class="swatch"><img src="assets/lang/hindi.jpg" alt="Hindi class in session at DBV" loading="lazy"><span class="letter lt-green">अ</span></div>
+        <div class="body"><h4>Hindi</h4><p>Speak, read, and recognize the sounds of the Devanagari script.</p></div>
+      </div>
+      <div class="lang-card reveal">
+        <div class="swatch"><img src="assets/lang/gujarati.jpg" alt="Gujarati class in session at DBV" loading="lazy"><span class="letter lt-orange">અ</span></div>
+        <div class="body"><h4>Gujarati</h4><p>Build vocabulary around daily life and grow comfortable conversing.</p></div>
+      </div>
+      <div class="lang-card reveal">
+        <div class="swatch"><img src="assets/lang/marathi.jpg" alt="Marathi class in session at DBV" loading="lazy"><span class="letter lt-blue">अ</span></div>
+        <div class="body"><h4>Marathi</h4><p>Learn the alphabet by sound and practice understanding and speaking.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="yg-band section-tight">
+  <div class="container">
+    <div class="grid">
+      <div class="reveal">
+        <span class="eyebrow" style="color:var(--orange);">DBV Youth Group</span>
+        <h2>Where cultural identity turns into action.</h2>
+        <p>For DBV graduates who are motivated to explore, develop, and integrate cultural relevance into their modern lives, the Youth Group puts cultural values into motion. Under the guidance of dedicated mentors, members volunteer, teach, discuss, and lead.</p>
+        <a class='btn btn-primary' href='join.html' style='margin-top:10px;'>Join the Youth Group</a>
+      </div>
+      <div class="yg-points reveal">
+        <div class="yg-point"><div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div><div><strong>Service projects</strong><span>Volunteer work and community involvement guided by mentors.</span></div></div>
+        <div class="yg-point"><div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div><strong>Discussion &amp; debate</strong><span>Strengthen identity through conversation with peers and guests.</span></div></div>
+        <div class="yg-point"><div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div><strong>Guest speakers</strong><span>Learn from South Asian role models from every walk of life.</span></div></div>
+        <div class="yg-point"><div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></div><div><strong>Leadership</strong><span>Become community leaders who represent the best of Indian values.</span></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="scallop flip on-cream" style="margin-top:0;"></div>
+</section>
+
+<section>
+  <div class="container" style="text-align:center;">
+    <span class="eyebrow">All year long</span>
+    <h2 style="margin-bottom:18px;">Families celebrate together, too.</h2>
+    <p style="max-width:58ch; margin:0 auto 30px;">We celebrate several cultural events each year, including Navratri, Holi, and more, and every one of them is open to the whole DBV family, old members and brand-new ones alike.</p>
+    <div class="ev-chips reveal">
+      <span class="ev-chip">Orientation</span>
+      <span class="ev-chip">Navratri Celebration</span>
+      <span class="ev-chip">Holi</span>
+      <span class="ev-chip">Yearly Field Trip</span>
+      <span class="ev-chip">Annual Day</span>
+    </div>
+    <div style="margin-top:32px;">
+      <a class='btn btn-outline-dark' href='events.html'>See all events</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <div class="brand-line"><img src="assets/logo.svg" alt="Downingtown Balvihar"></div>
+        <p>A volunteer-driven 501(c)(3) nonprofit teaching Indian culture, values, and language to the children of our community.</p>
+        <div class="social-row">
+          <a href="https://www.instagram.com/dbv_community/" aria-label="Instagram" target="_blank" rel="noopener"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+          <a href="https://www.facebook.com/downingtownbalvihar" aria-label="Facebook" target="_blank" rel="noopener"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.397 20.997v-8.196h2.765l.411-3.209h-3.176V7.548c0-.929.258-1.562 1.59-1.562h1.699V3.127c-.294-.039-1.302-.126-2.475-.126-2.447 0-4.122 1.494-4.122 4.237v2.354H7.35v3.209h2.741v8.196h3.306z"></path></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href='index.html'>Home</a></li>
+          <li><a href='about.html'>About Us</a></li>
+          <li><a href='events.html'>Events &amp; News</a></li>
+          <li><a href='join.html'>Join Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:balvihar.downingtown@gmail.com">balvihar.downingtown@gmail.com</a></li>
+          <li><span>Downingtown, PA 19335</span></li>
+          <li><span>E.N. Peirce Middle School, West Chester</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 Downingtown Balvihar. All rights reserved.</span>
+      <span>Website by DBV volunteers.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  var toggle = document.querySelector('.menu-toggle');
+  var nav = document.querySelector('.main-nav');
+  toggle.addEventListener('click', function(){ nav.classList.toggle('open'); });
+  nav.querySelectorAll('a').forEach(function(link){
+    link.addEventListener('click', function(){ nav.classList.remove('open'); });
+  });
+  var header = document.querySelector('.site-header');
+  function onScroll(){ header.classList.toggle('scrolled', window.scrollY > 10); }
+  window.addEventListener('scroll', onScroll, { passive:true });
+  onScroll();
+})();
+</script>
+
+</body>
+</html><script async src=".netlify/scripts/hud%3Fvariant=public" data-nf-variant="public" data-netlify-site-id="939a7c36-e662-4528-bc57-b235e3585050" data-app-host="app.netlify.com"></script>
