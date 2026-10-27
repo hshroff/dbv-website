@@ -596,8 +596,6 @@ div.top_nav,
   transform: scaleX(1) !important;
 }
 
-
-
 /* ==========================================================================
    MOBILE RESPONSIVENESS
    ========================================================================== */
@@ -886,10 +884,15 @@ div.top_nav,
 .dbv-content .name-cloud span { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; font-size: .92rem; font-weight: 600; color: var(--green-d); display: flex; align-items: center; gap: 10px; }
 .dbv-content .name-cloud span::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--orange); flex: none; }
 
-/* Language cards */
+/* Language cards - framing fix to prevent cropping heads */
 .dbv-content .lang-card { padding: 0; overflow: hidden; }
-.dbv-content .lang-card .swatch { height: 150px; position: relative; overflow: hidden; background: var(--line); }
-.dbv-content .lang-card .swatch img { width: 100%; height: 100%; object-fit: cover; }
+.dbv-content .lang-card .swatch { height: 180px !important; position: relative; overflow: hidden; background: var(--line); }
+.dbv-content .lang-card .swatch img { 
+  width: 100% !important; 
+  height: 100% !important; 
+  object-fit: cover !important; 
+  object-position: center 15% !important; /* Positions viewport upward so heads are preserved */
+}
 .dbv-content .lang-card .swatch .letter { position: absolute; left: 14px; bottom: 14px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,.94); display: flex; align-items: center; justify-content: center; font-family: var(--display) !important; font-size: 1.4rem; font-weight: 700; box-shadow: 0 4px 12px rgba(23,19,95,.2); }
 .dbv-content .lang-card .swatch .letter.lt-green { color: var(--green-d); }
 .dbv-content .lang-card .swatch .letter.lt-orange { color: var(--orange-deep); }
